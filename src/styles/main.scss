@@ -42,7 +42,7 @@ a, p {
   overflow: hidden;
 
   &:not(.start) {
-    min-height: 700px;
+    min-height: 765px;
   }
 
   &.start {
@@ -109,7 +109,6 @@ a, p {
   }
 
 }
-
 
 .result {
   overflow: visible;
@@ -623,11 +622,16 @@ a, p {
     &#step-4 {
       flex-wrap: nowrap;
 
+      @media screen and (max-width: 490px) {
+        flex-wrap: wrap;
+      }
+
       .button--black {
         width: calc(50% - 10px);
 
-        @media screen and (max-width: 6908px) {
-          width: max-content;
+        @media screen and (max-width: 490px) {
+          width: 100%;
+          margin: 0 0 15px 0;
         }
       }
     }
@@ -648,6 +652,7 @@ a, p {
           width: 100%;
           margin-top: 15px;
         }
+
       }
     }
 
@@ -1237,6 +1242,17 @@ a, p {
 
     button:nth-of-type(1) {
       margin-right: 10px;
+
+      @media screen and (max-width: 480px) {
+        margin: 0 0 15px 0;
+      }
+    }
+
+    .button--black {
+      @media screen and (max-width: 480px) {
+        width: 100%;
+        max-width: 100%;
+      }
     }
   }
 }
@@ -1742,12 +1758,13 @@ a, p {
   align-items: center;
   justify-content: center;
   width: max-content;
-  height: 65px;
-  padding: 0 5px;
+  min-height: 65px;
+  padding: 5px;
   border-radius: 58px;
   background: #fafafa;
   border: 1px solid white;
   margin-bottom: 5px;
+
 
   @media screen and (max-width: 425px) {
     height: 40px;
