@@ -1,7 +1,7 @@
 <template>
   <main :class="['main', {result: this.step === 10}, {'start' : start}, 'step_' + this.step, 'category_' + this.category_id]">
 
-    <div v-if='false' style='display: flex; justify-content:space-between; width: 100%; padding: 10px 20px 0 20px; position:absolute;' >
+    <div v-if='false' style='display: flex; justify-content:space-between; width: 100%; padding: 10px 20px 0 20px; position:absolute;'>
       <p style='font-size: 10px;'>пред. шаг - {{ this.step_prev_2 }} / {{ this.step_prev }}</p>
       <p style='font-size: 10px;'>шаг - {{ this.step }}</p>
       <p style='font-size: 10px;'>категория (category_id) - {{ this.category_id }}</p>
@@ -43,7 +43,8 @@
           </p>
           <button class='first-screen__button button--black'
                   @click='start=false'
-                  onclick="fbq('track', 'knquiz_start'); VK.Retargeting.Event('knquiz_start'); dataLayer.push({'event': 'knquiz_start'});">Начать</button>
+                  onclick="fbq('track', 'knquiz_start'); VK.Retargeting.Event('knquiz_start'); dataLayer.push({'event': 'knquiz_start'});">Начать
+          </button>
         </div>
 
         <div class='background' :class="'section_' + this.step">
@@ -214,7 +215,7 @@
                    `category_id_${this.category_id}`,
                    `${this.current_question === 5 && this.category_id !== 0 ? 'section__buttons__2': '' }`
                ]"
-               :id="'step-' + this.step">
+               :id='`step-${this.step}`'>
 
             <button v-for='(button_answer, index) in this.test_buttons' :key='index'
                     :class="[ activeClassButton(button_answer),
@@ -275,7 +276,7 @@
 
       </div>
 
-<!--  541202    -->
+      <!--  541202    -->
       <!--section - 7-->
       <div class='section' id='table' v-if='this.step === 5'>
         <picture class='section__picture'>
@@ -285,11 +286,12 @@
         <div class='section__text'>
           <div class='table' :class='showTable()'/>
           <p class='section__heading'> Ну что, убедили? </p>
-          <div v-if='this.category_id === 0 &&  this.amount !== 3' class='section__buttons' :class="'amount-' + this.purchase_method_id" :id="`'step-${this.step}`">
+          <div v-if='this.category_id === 0 &&  this.amount !== 3'
+               class='section__buttons' :class="'amount-' + this.purchase_method_id" :id='`step-${this.step}`'>
             <button class='button--black' @click='finalStep(0)'> Хочу автокредит</button>
             <button class='button--black' @click='finalStep(2)'> Нет, хочу потребительский</button>
           </div>
-          <div v-else-if='this.category_id === 0 &&  this.amount === 3' class='section__buttons' :class="'amount-' + this.purchase_method_id" :id="`'step-${this.step}`">
+          <div v-else-if='this.category_id === 0 &&  this.amount === 3' class='section__buttons' :class="'amount-' + this.purchase_method_id" :id='`step-${this.step}`'>
             <button class='button--black' @click='finalStep(1)'>Хочу кредит под залог недвижимости</button>
             <button class='button--black' @click='finalStep(2)'>Нет, хочу потребительский</button>
           </div>
@@ -455,7 +457,7 @@
           <div class='iframe'>
             <iframe v-if=' this.result_type_credit === "Автокредит"' width='100%' height='100%' frameborder='0' src='https://www.tinkoff.ru/loans/auto-loan/iframe/form/?parent_url={encodeURIComponent(document.location.href)}'></iframe>
 
-            <iframe  v-if=' this.result_type_credit === "Потребительский кредит"' width='100%' height='100%' frameborder='0' src='https://www.tinkoff.ru/loans/cash-loan/iframe/form/?parent_url={encodeURIComponent(document.location.href)}'></iframe>
+            <iframe v-if=' this.result_type_credit === "Потребительский кредит"' width='100%' height='100%' frameborder='0' src='https://www.tinkoff.ru/loans/cash-loan/iframe/form/?parent_url={encodeURIComponent(document.location.href)}'></iframe>
 
             <iframe v-if=' this.result_type_credit === "Кредит под залог недвижимости"' width='100%' height='100%' frameborder='0' src='https://www.tinkoff.ru/loans/cash-loan/realty/iframe/form/?parent_url={encodeURIComponent(document.location.href)}'></iframe>
           </div>
@@ -465,16 +467,12 @@
             <p>АО «Тинькофф Банк», лицензия ЦБ&nbsp;РФ&nbsp;№&nbsp;2673</p>
             <p>Пример расчета условий по кредиту носит исключительно информационный характер и&nbsp;не является публичной офертой.</p>
             <p>Сумма кредита, указанная в&nbsp;рекламном предложении, не является офертой. Банк определяет сумму кредита по результатам рассмотрения заявки. Процентная ставка, годовых:
-              <br>
-               1) базовая – от&nbsp;8,9% до&nbsp;30%;
-              <br>
-               2) при неучастии Клиента в&nbsp;«Программе страховой защиты заемщиков Банка 3.0» (Программа), если требуется кредитным договором – от 12,2% до 30%;
-              <br>
-               3) при прекращении Договора залога, невыдаче закладной либо признании ее недействительной, если нет обеспечения в&nbsp;виде залога недвижимости:
-              <br>
-               +5% процентных пунктов (п.п.) к ставке;
-              <br>
-               4) если не предоставлен договор страхования рисков утраты и&nbsp;повреждения Предмета залога: +0,5% п.п. к ставке. Плата за включение в&nbsp;Программу: 0,3% от Кредита в&nbsp;месяц. Кредит: до 15 млн ₽, срок от&nbsp;3 мес. до&nbsp;15 лет. Условия применимы к Тарифному плану КНЗ 3.15 (рубли РФ). Ставка и&nbsp;иные платежи, определяющие полную стоимость кредита, устанавливаются для каждого Клиента в&nbsp;индивидуальном порядке и&nbsp;указываются в&nbsp;индивидуальных условиях договора кредита под залог недвижимости. Банк вправе запросить иные документы у&nbsp;всех участников сделки. Кредит зачисляется на карту на след. день после регистрации ипотеки в&nbsp;Росреестре или ранее по решению Банка.`</p>
+              <br> 1) базовая – от&nbsp;8,9% до&nbsp;30%;
+              <br> 2) при неучастии Клиента в&nbsp;«Программе страховой защиты заемщиков Банка 3.0» (Программа), если требуется кредитным договором – от 12,2% до 30%;
+              <br> 3) при прекращении Договора залога, невыдаче закладной либо признании ее недействительной, если нет обеспечения в&nbsp;виде залога недвижимости:
+              <br> +5% процентных пунктов (п.п.) к ставке;
+              <br> 4) если не предоставлен договор страхования рисков утраты и&nbsp;повреждения Предмета залога: +0,5% п.п. к ставке. Плата за включение в&nbsp;Программу: 0,3% от Кредита в&nbsp;месяц. Кредит: до 15 млн ₽, срок от&nbsp;3 мес. до&nbsp;15 лет. Условия применимы к Тарифному плану КНЗ 3.15 (рубли РФ). Ставка и&nbsp;иные платежи, определяющие полную стоимость кредита, устанавливаются для каждого Клиента в&nbsp;индивидуальном порядке и&nbsp;указываются в&nbsp;индивидуальных условиях договора кредита под залог недвижимости. Банк вправе запросить иные документы у&nbsp;всех участников сделки. Кредит зачисляется на карту на след. день после регистрации ипотеки в&nbsp;Росреестре или ранее по решению Банка.`
+            </p>
 
           </div>
 
@@ -496,7 +494,7 @@ import axios from 'axios'
 import Header from './components/header'
 
 export default {
-  name:       'App',
+  name: 'App',
   components: {
     Header
   },
@@ -504,50 +502,50 @@ export default {
   data() {
     return {
       production: false,
-      data:                [],
-      start:               true,
-      next:                true,
-      step:                0,
-      step_prev:           0,
-      step_prev_2:         0,
-      heading:             "",
+      data: [],
+      start: true,
+      next: true,
+      step: 0,
+      step_prev: 0,
+      step_prev_2: 0,
+      heading: "",
       your_choice_heading: "",
-      your_choice_desc:    "",
-      your_choice_button:  "",
-      category_id:         0,
-      amount:              0,
-      purchase_method:     0,
-      purchase_method_id:  0,
-      buttons:             "categories_name",
+      your_choice_desc: "",
+      your_choice_button: "",
+      category_id: 0,
+      amount: 0,
+      purchase_method: 0,
+      purchase_method_id: 0,
+      buttons: "categories_name",
 
       //test
-      current_question:    0,
-      all_qestions:        7,
-      attempt:             0,
-      test_question:       "",
-      test_version:        "test",
-      test_buttons:        "",
-      correct_answer:      "",
+      current_question: 0,
+      all_qestions: 7,
+      attempt: 0,
+      test_question: "",
+      test_version: "test",
+      test_buttons: "",
+      correct_answer: "",
       correct_answer_text: "",
-      answer_text:         false,
-      show_button:         false,
-      result:              [],
-      result_type_credit:  "",
+      answer_text: false,
+      show_button: false,
+      result: [],
+      result_type_credit: "",
 
       // info lizing
-      leasing:           [],
-      text_info:         0,
-      text_info_end:     [],
-      text_info_end_2:   [],
-      test_desc:         "",
-      common:            true,
+      leasing: [],
+      text_info: 0,
+      text_info_end: [],
+      text_info_end_2: [],
+      test_desc: "",
+      common: true,
       branch_accumulate: true,
-      info_end_2:        false,
-      info_end_3:        false,
+      info_end_2: false,
+      info_end_3: false,
 
       // other
       button_active: false,
-      error:         false
+      error: false
     }
   },
 
@@ -584,11 +582,6 @@ export default {
     },
 
     typeCredit(type, heading) {
-      console.log('');
-      console.log('typeCredit:');
-      console.log('type: ', type);
-      console.log('heading: ', heading);
-      console.log('');
       switch (type) {
         case 'Рассчитать потребительский кредит':
         case 'Хочу потребительский кредит':
@@ -618,13 +611,13 @@ export default {
     finalStep(type_credit) {
       this.result_type_credit = type_credit;
       this.getData(this.data);
-      this.step_prev          = this.step;
-      this.step               = 7;
+      this.step_prev = this.step;
+      this.step      = 7;
     },
 
     activeClassButton(button_answer) {
       return {
-        true:  this.button_active === button_answer["answer"] && button_answer["answer"] === 0,
+        true: this.button_active === button_answer["answer"] && button_answer["answer"] === 0,
         false: this.button_active === button_answer["answer"] && button_answer["answer"] === 1
       }
     },
@@ -649,7 +642,18 @@ export default {
         this.current_question >= 0 ? this.test_buttons = data["branches"][this.category_id]['categories'][this.purchase_method][this.test_version][this.current_question]['buttons'] : null;
       }
       if (this.step === 4 && this.next) {
-        this.correct_answer_text = data["branches"][this.category_id]['categories'][this.purchase_method][this.test_version][this.current_question]["answers"][this.correct_answer]["text"];
+        if (data["branches"][this.category_id]['categories'][this.purchase_method][this.test_version] === undefined) {
+          this.step = 4;
+
+          /*console.log('--');
+          console.log(this.text_info);
+          console.log(this.purchase_method);
+          console.log('--');*/
+
+          this.stepPrev()
+        } else {
+          this.correct_answer_text = data["branches"][this.category_id]['categories'][this.purchase_method][this.test_version][this.current_question]["answers"][this.correct_answer]["text"];
+        }
       }
       this.leasing         = data["branches"][this.category_id]['categories'][this.purchase_method]['info'];
       this.text_info_end   = data["branches"][this.category_id]['categories'][this.purchase_method]['info-end'];
@@ -676,7 +680,7 @@ export default {
 
         that.getData(that.data);
         that.answer_text = false;
-        that.attempt     = 0;
+        that.attempt = 0;
       }
 
       switch (this.step) {
@@ -768,7 +772,6 @@ export default {
           this.step--;
           break;
       }
-
       resetStepPrev(this);
 
     },
@@ -798,12 +801,6 @@ export default {
     },
 
     getAnswer(button_answer, btn_name) {
-
-      console.log('');
-      console.log('getAnswer:');
-      console.log('getbutton_answer: ', button_answer);
-      console.log('btn_name: ', btn_name);
-      console.log('');
 
       function resetAnswer(that) {
         that.next           = true;
@@ -907,12 +904,6 @@ export default {
     },
 
     textInfoNext(next, btn_name) {
-
-      console.log('');
-      console.log('923 textInfoNext:');
-      console.log('next: ', next);
-      console.log('btn_name: ', btn_name);
-      console.log('');
 
       if (this.text_info < this.leasing.length - 1) {
         this.text_info++

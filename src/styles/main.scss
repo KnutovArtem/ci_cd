@@ -650,6 +650,19 @@ a, p {
         }
       }
     }
+    &#step-4.amount-0.category_id_1.section__buttons__2,
+    &#step-4.amount-0.category_id_2.section__buttons__2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      grid-gap: 15px;
+
+      button {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+    }
 
     &#step-5 {
       display: flex;
@@ -666,6 +679,22 @@ a, p {
         &:not(:nth-of-type(-n+2)) {
           width: 100%;
           margin-top: 15px;
+        }
+
+      }
+    }
+
+    &#step-5.amount-0 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      grid-gap: 10px;
+
+      @media screen and (max-width: 1125px) {
+      grid-template-columns: 1fr;
+
+        button {
+          width: 100%;
         }
 
       }
@@ -726,6 +755,7 @@ a, p {
 
       .button--black {
         width: 100%;
+        margin-top: 0;
       }
     }
 
@@ -1369,12 +1399,12 @@ a, p {
   @media screen and (max-width: 425px) {
     height: 55vh;
     max-height: 500px;
-    background: url("#{$url}/img/table-mob.svg") no-repeat 0 50%/contain;
+    background: url("#{$url}/img/table-mob.svg") no-repeat 0 0/contain;
   }
 }
 
 .table-2 {
-  background: url("#{$url}/img/table-2.svg") no-repeat 0 50%/contain;
+  background: url("#{$url}/img/table-2.svg") no-repeat 0/contain;
 }
 
 // Animation elements ------------------------
@@ -1484,10 +1514,12 @@ a, p {
     }
   }
 
-  &:hover {
-    background: #262626;
-    transition: all .45s ease-in-out;
-    cursor: pointer;
+  @media screen and (min-width: 1025px) {
+    &:hover {
+      background: #262626;
+      transition: all .45s ease-in-out;
+      cursor: pointer;
+    }
   }
 
   @media screen and (max-width: 1440px) {
@@ -1530,18 +1562,20 @@ a, p {
   justify-content: center;
   width: max-content;
   min-height: 65px;
-  padding: 10px 28px;
+  padding: 0 28px;
   border-radius: 5px;
   font-size: 17px;
   background: #fafafa;
   color: #000;
   border: 1px solid white;
 
-  &:hover {
-    background: $color--accent;
-    transition: all .25s ease-in-out;
-    cursor: pointer;
-    color: #000;
+  @media screen and (min-width: 1025px) {
+    &:hover {
+      background: $color--accent;
+      transition: all .25s ease-in-out;
+      cursor: pointer;
+      color: #000;
+    }
   }
 
   @media screen and (max-width: 1080px) {
@@ -1583,12 +1617,13 @@ a, p {
     }
   }
 
-  &:hover {
-    background: #000;
-    color: white;
-    cursor: pointer;
+  @media screen and (min-width: 1025px) {
+    &:hover {
+      background: #000;
+      color: white;
+      cursor: pointer;
+    }
   }
-
   @media screen and (max-width: 1080px) {
     height: 50px;
   }
@@ -1611,13 +1646,14 @@ a, p {
   font-size: 17px;
   letter-spacing: 0.030rem;
 
-  &:hover {
-    background: $color--accent;
-    transition: all .25s ease-in-out;
-    cursor: pointer;
-    color: #000;
+  @media screen and (min-width: 1025px) {
+    &:hover {
+      background: $color--accent;
+      transition: all .25s ease-in-out;
+      cursor: pointer;
+      color: #000;
+    }
   }
-
   @media screen and (max-width: 1080px) {
     min-height: 55px;
     padding: 0 15px;
@@ -1740,24 +1776,10 @@ a, p {
     text-decoration: underline;
   }
 
-  /*  &:hover::after {
-      transition: all .25s ease-in-out;
-      cursor: pointer;
-
-      animation: animation-lightning-bg .5s cubic-bezier(1, -0.25, 0, 1.02) infinite forwards alternate;
-      @keyframes animation-lightning-bg {
-        100% {
-          box-shadow: 0 0 25px -8px rgba(189, 112, 87, 0.9);
-        }
-      }
-    }*/
-
-  /*&:hover::before {
-    animation: animation-lightning .4s ease-in-out infinite forwards alternate;
-  }*/
-
-  &:hover {
-    text-decoration: underline;
+  @media screen and (min-width: 1025px) {
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &.right {
@@ -1779,13 +1801,12 @@ a, p {
   align-items: center;
   justify-content: center;
   width: max-content;
-  min-height: 65px;
-  padding: 5px;
+  height: 65px;
+  padding: 0 5px;
   border-radius: 58px;
   background: #fafafa;
   border: 1px solid white;
   margin-bottom: 5px;
-
 
   @media screen and (max-width: 425px) {
     height: 40px;
