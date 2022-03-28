@@ -1,0 +1,24 @@
+# This is an example Starter pipeline configuration
+# Use a skeleton to build, test and deploy using manual and parallel steps
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment
+
+image: atlassian/default-image:3
+
+pipelines:
+ branches:
+  master:
+        - step:
+           script:
+             - git remote add sync git@git.k1soft.ru:tks/tinkoff-loan-special-project.git
+             - git checkout master
+             - git pull
+             - git push sync master
+
+  Before_editing:
+        - step:
+           script:
+             - git remote add sync git@git.k1soft.ru:tks/tinkoff-loan-special-project.git
+             - git checkout Before_editing
+             - git pull
+             - git push sync Before_editing
