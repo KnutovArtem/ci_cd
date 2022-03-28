@@ -10,7 +10,7 @@ pipelines:
   master:
         - step:
            script:
-             - git remote add sync git@git.k1soft.ru:tks/tinkoff-loan-special-project.git
+             - git remote add sync git@gitlab.com:KnutovArtem/test.git
              - git checkout master
              - git pull
              - git push sync master
@@ -18,7 +18,7 @@ pipelines:
   Before_editing:
         - step:
            script:
-             - git remote add sync git@git.k1soft.ru:tks/tinkoff-loan-special-project.git
+             - git remote add sync git@gitlab.com:KnutovArtem/test.git
              - git checkout Before_editing
              - git pull
              - git push sync Before_editing
