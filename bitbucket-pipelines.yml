@@ -7,13 +7,21 @@ image: atlassian/default-image:3
 
 pipelines:
  branches:
-  master:
+  main:
         - step:
            script:
              - git remote add sync git@gitlab.com:KnutovArtem/test.git
              - git checkout master
              - git pull
              - git push sync master
+
+  master:
+    - step:
+        script:
+          - git remote add sync git@gitlab.com:KnutovArtem/test.git
+          - git checkout master
+          - git pull
+          - git push sync master
 
   Before_editing:
         - step:
