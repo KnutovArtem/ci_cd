@@ -1,7 +1,7 @@
 <template>
   <main :class="['main', {result: this.step === 10}, {'start' : start}, 'step_' + this.step, 'category_' + this.category_id]">
 
-    <div v-if='false' style='display: flex; justify-content:space-between; width: 100%; padding: 10px 20px 0 20px; position:absolute;'>
+    <div v-if='false' style='display: flex; justify-content:space-between; width: 100%; padding: 15px 20px 0 20px; position:absolute;'>
       <p style='font-size: 10px;'>пред. шаг - {{ this.step_prev_2 }} / {{ this.step_prev }}</p>
       <p style='font-size: 10px;'>шаг - {{ this.step }}</p>
       <p style='font-size: 10px;'>категория (category_id) - {{ this.category_id }}</p>
