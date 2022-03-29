@@ -10,7 +10,7 @@ pipelines:
   main:
         - step:
            script:
-             - git remote add sync git@gitlab.com:KnutovArtem/test.git
+             - git remote add sync git@github.com:KnutovArtem/ci_cd.git
              - git checkout master
              - git pull
              - git push sync master
@@ -18,7 +18,7 @@ pipelines:
   master:
     - step:
         script:
-          - git remote add sync git@gitlab.com:KnutovArtem/test.git
+          - git remote add sync git@github.com:KnutovArtem/ci_cd.git
           - git checkout master
           - git pull
           - git push sync master
@@ -26,7 +26,7 @@ pipelines:
   Before_editing:
         - step:
            script:
-             - git remote add sync git@gitlab.com:KnutovArtem/test.git
+             - git remote add sync git@github.com:KnutovArtem/ci_cd.git
              - git checkout Before_editing
              - git pull
              - git push sync Before_editing
